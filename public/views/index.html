@@ -46,59 +46,57 @@
       <ul id = "todo-list">
         <div class="container">
           <div class="row">  
-            <div class="col">
-              <span class = "todo-text">todoを書き込む</span>
-            </div>
-            <div class="col-md-auto">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
-            </div>
-            <div class="col col-lg-2">
-              <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
-            </div>
+              <div class="col-sm">
+                <p class = "text-center">todoを書き込む</p>
+              </div>
+              <div class="col">
+                <p class = "text-center">期限</p>
+              </div>
+              <div class ="col-">  
+                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
+                <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
+              </div>
+          </div>
+        </div>
+      </ul>
+      <ul id = "todo-list">
+        <div class="container">
+          <div class="row">  
+              <div class="col">
+                <p class = "text-center">todoを書き込む</p>
+              </div>
+              <div class="col">
+                <p class = "text-center">期限</p>
+              </div>
+              <div class ="col-">  
+                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
+                <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
+              </div>
+          </div>
+        </div>
+      </ul>
+      <ul id = "todo-list">
+        <div class="container">
+          <div class="row">  
+              <div class="col-sm">
+                <p class = "text-center">todoを書き込む</p>
+              </div>
+              <div class="col">
+                <p class = "text-center">期限</p>
+              </div>
+              <div class ="col-">  
+                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
+                <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
+              </div>
           </div>
         </div>
       </ul>
     </div>
 
-    <!-- 削除を押しmodalを起動 -->
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-0">
-          <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
-            <h1 class="modal-title">次のタスクを削除しますか？ </h1>
-            <li class="list-item"><span class = "todo-text">todoを書き込む</span></li>
-            
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- 更新を押した場合 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-0">
-          <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
-            <li class="modal-title">以下を表示</li>
-            <li class="list-item"><span class = "todo-text">todoを書き込む</span></li>
-            
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    
-    <!-- タスクを追加を押した場合 -->
+    <!-- タスクの追加を押した場合 -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -132,6 +130,59 @@
       </div>
     </div>
 
+    <!-- 更新を押しmodalを起動 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">タスクの更新</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">           
+            <div class="form-group">
+              <form>
+                <label for="Inputtask">タスク</label>
+                <input type="text" class="form-control" id="exampleInputtask"  placeholder="タスクを入力してください">
+                <label for="Inputdate">期限</label>
+                <input type="text" class="form-control"  placeholder="期限を入力してください">
+                <label>カテゴリ</label>
+                <select class = "form-control" name = "select" id="select">
+                  <option>勉強</option>
+                  <option>仕事</option>
+                  <option>家事</option>
+                </select>
+                <label>ステータス</label>
+                <select class = "form-control" name = "select" id="select">
+                  <option>進行中</option>
+                  <option>完了</option>
+                </select>
+              </form>
+            </div>           
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 削除を押しmodalを起動 -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0">
+          <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
+            <p class="modal-title">次のタスクを削除しますか？ </p>
+            <span class = "todo-text">todoを書き込む</span>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-primary">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
   </body>
 </html>
