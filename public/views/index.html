@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../stylesheets/style.css" />
 
     <title>Todoアプリ</title>
+
   </head>
   <body>
     <div class="container">
@@ -41,60 +42,184 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <div>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">+ タスクの追加</button>
-      <ul id = "todo-list">
-        <div class="container">
-          <div class="row">  
-              <div class="col-sm">
-                <p class = "text-center">todoを書き込む</p>
-              </div>
-              <div class="col">
-                <p class = "text-center">期限</p>
-              </div>
-              <div class ="col-">  
-                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
-                <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
-              </div>
-          </div>
-        </div>
-      </ul>
-      <ul id = "todo-list">
-        <div class="container">
-          <div class="row">  
-              <div class="col">
-                <p class = "text-center">todoを書き込む</p>
-              </div>
-              <div class="col">
-                <p class = "text-center">期限</p>
-              </div>
-              <div class ="col-">  
-                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
-                <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
-              </div>
-          </div>
-        </div>
-      </ul>
-      <ul id = "todo-list">
-        <div class="container">
-          <div class="row">  
-              <div class="col-sm">
-                <p class = "text-center">todoを書き込む</p>
-              </div>
-              <div class="col">
-                <p class = "text-center">期限</p>
-              </div>
-              <div class ="col-">  
-                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">更新</button>
-                <button type="button"  class="btn btn-danger" data-toggle="modal" data-backdrop="static" data-target="#Modal">削除</button>
-              </div>
-          </div>
-        </div>
-      </ul>
-    </div>
+
+    <!--ここからbootstrapでの記述-->
+    <!--menuボタン-->
+    <input id="menu1" type="checkbox">
+    <label for="menu1" class="back"></label>
+    <nav class="menu">
+    <ul>
+        <li><a href="#"><button type="button"  class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">タスクの追加</button></a></li>
+        <li><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">編集</button></a></li>
+        <li><a href="#"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal">削除</button></a></li>
+    </ul>
+    <label for="menu1">閉じる</label>
+</nav>
+  <section>
+      <label for="menu1" class="menu_btn">menu</label>
+  </section>
+    <!--menuボタン（終了）-->
+        
+    <!--todo名、期限、アラートのテーブル-->
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>　</th>
+                  <th>todo名</th>
+                  <th>期限</th>
+                  <th>アラート</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>1</td>
+                  <td>犬の散歩</td>
+                  <td>期限の入力</td>
+                  <th><input type="checkbox" class="toggle" /></th>   
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>犬の餌の購入</td>
+                  <td>期限の入力</td>         
+                  <th><input type="checkbox" class="toggle" /></th>   
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>掃除</td>
+                  <td>期限の入力</td>
+                  <th><input type="checkbox" class="toggle" /></th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+               </tr>
+
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+              </th>   
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+              <tr>
+                <td></td>
+                <td>name</td>
+                <td>day</td>
+                <th>
+                  <input type="checkbox" class="toggle" />     
+                </th>   
+              </tr>
+          </tbody>
+      </table>
+    <!--todo名、期限、アラートのテーブル（終了）-->
+
+
+    <!--ページトップに戻る-->
+      <a href="" class="btn btn--circle btn--circle-c btn--shadow"><i class="fas fa-arrow-up">🔝</i></a>
+    <!--ページトップに戻る（終了）-->
+
 
     <!-- タスクの追加を押した場合 -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,9 +236,9 @@
               <form>
                 <label for="Inputtask">タスク</label>
                 <input type="text" class="form-control" id="exampleInputtask"  placeholder="タスクを入力してください">
-                <label for="Inputdate">期限</label>
+                <label for="Inputdate" style="margin-top: 10px; margin-bottom: 10px;">期限</label>
                 <input type="text" class="form-control"  placeholder="期限を入力してください">
-                <label>カテゴリ</label>
+                <label style="margin-top: 10px; margin-bottom: 10px;">カテゴリ</label>
                 <select class = "form-control" name = "select" id="select">
                   <option>勉強</option>
                   <option>仕事</option>
@@ -129,8 +254,12 @@
         </div>
       </div>
     </div>
+    <!-- タスクの追加を押した場合(終了) -->
 
-    <!-- 更新を押しmodalを起動 -->
+    
+    
+
+    <!--編集を押しmodalを起動 -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -145,15 +274,15 @@
               <form>
                 <label for="Inputtask">タスク</label>
                 <input type="text" class="form-control" id="exampleInputtask"  placeholder="タスクを入力してください">
-                <label for="Inputdate">期限</label>
+                <label for="Inputdate" style="margin-top: 10px; margin-bottom: 10px;">期限</label>
                 <input type="text" class="form-control"  placeholder="期限を入力してください">
-                <label>カテゴリ</label>
+                <label style="margin-top: 10px; margin-bottom: 10px;">カテゴリ</label>
                 <select class = "form-control" name = "select" id="select">
                   <option>勉強</option>
                   <option>仕事</option>
                   <option>家事</option>
                 </select>
-                <label>ステータス</label>
+                <label style="margin-top: 10px; margin-bottom: 10px;">ステータス</label>
                 <select class = "form-control" name = "select" id="select">
                   <option>進行中</option>
                   <option>完了</option>
@@ -168,21 +297,55 @@
         </div>
       </div>
     </div>
+    <!--編集を押しmodalを起動(終了) -->
+
 
     <!-- 削除を押しmodalを起動 -->
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content border-0">
-          <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
-            <p class="modal-title">次のタスクを削除しますか？ </p>
-            <span class = "todo-text">todoを書き込む</span>
+          <div class="alert alert-light alert-dismissible fade show mb-0" role="alert">
+            <p class="modal-title">削除する項目を選んでください </p>
+          <tbody>
+            <tr>
+                <td>1</td>
+                <td>犬の散歩</td>
+                <th>
+                  <div class="btn1_wrap">
+                    <input value="1" id="btn_demo1" type="checkbox">
+                    <label for="btn_demo1"><span></span></label>
+                  </div>             
+                </th>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>犬の餌の購入</td>
+              <th>
+                <div class="btn2_wrap">
+                  <input value="1" id="btn_demo2" type="checkbox">
+                  <label for="btn_demo2"><span></span></label>
+                </div>             
+              </th>            
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>掃除</td>
+              <th>
+                <div class="btn3_wrap">
+                  <input value="1" id="btn_demo3" type="checkbox">
+                  <label for="btn_demo3"><span></span></label>
+                </div>             
+              </th>
+            </tr>
+        
+        </tbody>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary">OK</button>
+            <button type="button" class="btn btn-primary">削除</button>
           </div>
         </div>
       </div>
     </div>
-    
+    <!-- 削除を押しmodalを起動（終了） -->
   </body>
 </html>

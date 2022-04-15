@@ -6,3 +6,356 @@ body {
 a {
   color: #00b7ff;
 }
+
+/*ここから追加*/
+
+input#menu1 {
+  display: none;
+}
+/* メニュー展開時の背景 */
+.back {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+input#menu1:checked ~ label.back {
+  opacity: 1;
+  visibility: visible;
+}
+/* スライドコンテンツ */
+.menu {
+  width: 80%;
+  max-width: 400px;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  background: #f1f1f1;
+  transform: translateX(100%);
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+/* 左からのスライドの場合
+.menu{
+  width: 80%;
+  max-width: 400px;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: #f1f1f1;
+  transform: translateX(-100%);
+  transition: .5s;
+  overflow-y: scroll;
+}
+*/
+input#menu1:checked ~ .menu {
+  transform: translateX(0);
+}
+/* 閉じるボタン */
+.menu label {
+  margin: 10px 0 0 10px;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 5px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.menu label:hover,
+.menu li a:hover,
+.menu_btn:hover {
+  background: #af975e;
+  color: #fff;
+}
+/* メニューリスト */
+.menu li a {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #bbb;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  transition: 0.5s;
+}
+.menu li:first-of-type a {
+  border-top: 1px solid #bbb;
+}
+/*  メニュー展開ボタン */
+.menu_btn {
+  padding: 10px 10px 10px 40px;
+  background: #eee;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.5s;
+}
+.menu_btn::before,
+.menu_btn::after {
+  content: "";
+  width: 20px;
+  margin: auto;
+  border-top: 2px solid #666;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+.menu_btn::before {
+  height: 18px;
+  border-bottom: 2px solid #666;
+}
+.menu_btn::after {
+  height: 0;
+}
+.menu_btn:hover::before,
+.menu_btn:hover::after {
+  border-color: #fff;
+}
+
+/*デモボタン(削除の横のボタン)の追加*/
+.btn1_wrap {
+  height: 50px;
+  position: relative;
+}
+.btn1_wrap input {
+  opacity: 0;
+}
+.btn1_wrap label {
+  width: 80px;
+  height: 30px;
+  box-sizing: border-box;
+  float: left;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+.btn1_wrap input:focus + label,
+.btn1_wrap input:focus + label:before {
+  box-shadow: 0 0 4px #34abff;
+}
+.btn1_wrap input:checked + label {
+  background: #4bd865;
+}
+.btn1_wrap label:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: white;
+  left: 5px;
+  top: 5px;
+  box-sizing: border-box;
+  color: black;
+  border-radius: 50px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.btn1_wrap input[type="checkbox"]:checked + label:before {
+  left: 53px;
+}
+.btn1_wrap label span {
+  width: 100%;
+  position: absolute;
+  left: calc(100% + 15px);
+  font-size: 1.6rem;
+  line-height: 50px;
+}
+
+/*デモ２*/
+.btn2_wrap {
+  height: 50px;
+  position: relative;
+}
+.btn2_wrap input {
+  opacity: 0;
+}
+.btn2_wrap label {
+  width: 80px;
+  height: 30px;
+  box-sizing: border-box;
+  float: left;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+.btn2_wrap input:focus + label,
+.btn2_wrap input:focus + label:before {
+  box-shadow: 0 0 4px #34abff;
+}
+.btn2_wrap input:checked + label {
+  background: #4bd865;
+}
+.btn2_wrap label:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: white;
+  left: 5px;
+  top: 5px;
+  box-sizing: border-box;
+  color: black;
+  border-radius: 50px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.btn2_wrap input[type="checkbox"]:checked + label:before {
+  left: 53px;
+}
+.btn2_wrap label span {
+  width: 100%;
+  position: absolute;
+  left: calc(100% + 15px);
+  font-size: 1.6rem;
+  line-height: 50px;
+}
+
+/*デモ３*/
+.btn3_wrap {
+  height: 50px;
+  position: relative;
+}
+.btn3_wrap input {
+  opacity: 0;
+}
+.btn3_wrap label {
+  width: 80px;
+  height: 30px;
+  box-sizing: border-box;
+  float: left;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+.btn3_wrap input:focus + label,
+.btn3_wrap input:focus + label:before {
+  box-shadow: 0 0 4px #34abff;
+}
+.btn3_wrap input:checked + label {
+  background: #4bd865;
+}
+.btn3_wrap label:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: white;
+  left: 5px;
+  top: 5px;
+  box-sizing: border-box;
+  color: black;
+  border-radius: 50px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+.btn3_wrap input[type="checkbox"]:checked + label:before {
+  left: 53px;
+}
+.btn3_wrap label span {
+  width: 100%;
+  position: absolute;
+  left: calc(100% + 15px);
+  font-size: 1.6rem;
+  line-height: 50px;
+}
+
+/*上に戻るボタン*/
+a.btn--circle {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+a.btn--circle i {
+  font-size: 150%;
+  line-height: 60px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  letter-spacing: 0;
+}
+a.btn--circle:hover i {
+  line-height: 55px;
+}
+
+/*アラートボタン*/
+.toggle {
+  display: inline-block;
+  appearance: none; /* ① */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 60px; /* ② */
+  height: 30px;
+  border-radius: 15px;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+}
+
+.toggle::after {
+  /* ③ */
+  content: "";
+  display: block;
+  width: 26px; /* ④ */
+  height: 26px;
+  background-color: white;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: left 0.3s; /* ⑤ */
+  position: absolute;
+  top: 1px;
+  left: 31px;
+}
+
+.toggle::before {
+  /* ⑥ */
+  content: "OFF";
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 4px;
+  color: #fff;
+}
+
+.toggle:checked {
+  /* ⑦ */
+  background-color: #1ea7fd;
+  border: 1px solid #1ea7fd;
+}
+
+.toggle:checked::after {
+  /* ⑦ */
+  left: 1px;
+}
+
+.toggle:checked::before {
+  /* ⑦ */
+  content: "ON";
+  left: 32px;
+}

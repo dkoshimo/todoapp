@@ -71,18 +71,4 @@ const httpDelete = async function (url) {
     modalTitle.textContent = "New message to " + recipient;
     modalBodyInput.value = recipient;
   });
-
-  ("use strict");
-
-  const textInput = document.getElementById("exampleInputtask");
-  const todoList = document.getElementById("todo-list");
-
-  textInput.addEventListener("keydown", (e) => {
-    const text = textInput.value;
-
-    if (text === "" || e.key !== "Enter") {
-      return;
-    }
-    console.log("todoが入力されました");
-  });
 };
