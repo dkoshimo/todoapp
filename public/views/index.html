@@ -348,4 +348,22 @@
     </div>
     <!-- 削除を押しmodalを起動（終了） -->
   </body>
+
+
+  <script src="../javascripts/index.js">
+  $("#creat-task").on("clisk", async function ()){
+    const requestData = {
+      taskName: $("#create-form input[name=task]").val(),
+      deadline: $("#create-form input[name=deadline]").val(),
+      category: $("#create-form select[name=category]").val(),
+    };
+
+    const responese = await httpPost(
+      "//" + window.location.host + "/api/tasks",
+      requestData
+    );
+    window.location.reload();
+  }
+
+</script>
 </html>
