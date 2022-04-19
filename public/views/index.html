@@ -20,13 +20,11 @@
     <title>Todoアプリ</title>
 
   </head>
+
   <body>
     <div class="container">
       <!-- Content here -->
     </div>
-
-
-    
     <!--ここからbootstrapでの記述-->
     <!--menuボタン-->
     <input id="menu1" type="checkbox">
@@ -46,34 +44,8 @@
         
     <!--todo名、期限、アラートのテーブル-->
       <table class="table table-striped">
-        <thead>
-          <tr>
-              <th></th>
-              <th>todo名</th>
-              <th>期限</th>
-              <th>アラート</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>1</td>
-              <td>犬の散歩</td>
-              <td>期限の入力</td>
-              <th><input type="checkbox" class="toggle" /></th>   
-          </tr>
-          <tr>
-              <td>2</td>
-              <td>犬の餌の購入</td>
-              <td>期限の入力</td>         
-              <th><input type="checkbox" class="toggle" /></th>   
-          </tr>
-          <tr>
-              <td>3</td>
-              <td>掃除</td>
-              <td>期限の入力</td>
-              <th><input type="checkbox" class="toggle" /></th>   
-          </tr>
-      </tbody>
+        <ul id="task-list">
+       </ul>
       </table>
     <!--todo名、期限、アラートのテーブル（終了）-->
 
@@ -119,48 +91,34 @@
     <!-- タスクの追加を押した場合(終了) -->
 
     
+
+
     
-
-    <!--編集を押しmodalを起動 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">タスクの更新</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">           
-            <div class="form-group">
-              <form>
-                <label for="Inputtask">タスク</label>
-                <input type="text" class="form-control" id="exampleInputtask"  placeholder="タスクを入力してください">
-                <label for="Inputdate" style="margin-top: 10px; margin-bottom: 10px;">期限</label>
-                <input type="text" class="form-control"  placeholder="期限を入力してください">
-                <label style="margin-top: 10px; margin-bottom: 10px;">カテゴリ</label>
-                <select class = "form-control" name = "select" id="select">
-                  <option>勉強</option>
-                  <option>仕事</option>
-                  <option>家事</option>
+  <!--更新を押しmodalを起動 -->
+      <div class="update-form" id="update-form" style="display: none;">
+          <form>
+            <input type="hidden" name="id"/>
+            <label for="task">タスク</label>
+            <input type="text"  name="task" id="task"/>
+            <label for="Inputdate" style="margin-top: 10px; margin-bottom: 10px;">期限</label>
+            <input type="text" name="deadline" id="deadline" placeholder="期限を入力してください"/>
+            <label style="margin-top: 10px; margin-bottom: 10px;">カテゴリ</label>
+            <select class = "form-control" name = "category" id="category">
+              <option value="1">勉強</option>
+              <option value="2">仕事</option>
+              <option value="3">家事</option>
+            </select>
+              <label for="status" style="margin-top: 10px; margin-bottom: 10px;">ステータス</label>
+                <select name = "status" id="status">
+                  <option value="1">進行中</option>
+                  <option value="2">完了</option>
                 </select>
-                <label style="margin-top: 10px; margin-bottom: 10px;">ステータス</label>
-                <select class = "form-control" name = "select" id="select">
-                  <option>進行中</option>
-                  <option>完了</option>
-                </select>
-              </form>
-            </div>           
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary">保存</button>
-          </div>
+          </form>
+            <button class="display-none" >キャンセル</button>
+            <button class="display-none">保存</button>
         </div>
-      </div>
-    </div>
-    <!--編集を押しmodalを起動(終了) -->
-
+    <!--更新を押しmodalを起動(終了) -->
+    
 
     <!-- 削除を押しmodalを起動 -->
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
@@ -236,7 +194,7 @@
 
     <script>
       //登録ボタンを押下時
-      $("#creat-task").on("clisk", async function () {
+      $("#create-task").on("click", async function () {
         const requestData = {
           taskName: $("#create-form input[name=task]").val(),
           deadline: $("#create-form input[name=deadline]").val(),
@@ -249,6 +207,47 @@
         );
         window.location.reload();
       }); 
+
+      //タスク一覧取得
+      $(async function(){
+        const response = await httpGet(
+           "//" + window.location.host + "/api/tasks"
+        );
+        //リストの繰り返し表示(アロー関数)
+        const list = response.map((item) => {
+          return`
+            <li>
+              <span>${item.task_name}</span>
+              <span>${item.deadline}</span>
+              <span><button id="update-button" data-id=${item.id} >更新</button></span>
+              <span><button id="delete-button" data_id=${item.id} data-delete=${item.task_name}>削除</button></span>
+            </li>`;
+        });
+       $("ul#task-list").append(list);
+      });
+
+            //更新ボタン押下時
+          $(document).on("click", "#update-button", async function(){
+            $("#update-form").show();
+            const id = $(this).data("id");
+            const response = await httpGet(
+              "//" + window.location.host + `/api/tasks/${id}`
+            );
+
+            const date = new Date(response[0].deadline);
+            const year = date.getFullYear();
+            const month = ("0" + (date.getMonth() + 1)).slice(-2);
+            const day = ("0" + date.getDate()).slice(-2);
+            const deadlineVal = `${year}-${month}-${day}`;
+
+            $("#update-form input[name=id]").val(response[0].id);
+            $("#update-form input[name=task]").val(response[0].task_name);
+            $("#update-form input[name=deadline]").val(deadlineVal);
+            $("#update-form input[name=category]").val(response[0].category_id);
+            $("#update-form input[name=status]").val(response[0].task_status);
+          });
+
+          
     </script>
 
   </body>

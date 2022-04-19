@@ -9,4 +9,16 @@ router.post("/tasks", async function (req, res, next) {
   res.send(postTasks);
 });
 
+/* タスク一覧を取得するルーティング */
+router.get("/tasks", async function (req, res, next) {
+  const getTasks = await tasks.getTasks();
+  res.send(getTasks);
+});
+
+/* タスク一件を取得するルーティング */
+router.get("/tasks/:id", async function (req, res, next) {
+  const getTasksId = await tasks.getTasksId(req.params.id);
+  res.send(getTasksId);
+});
+
 module.exports = router;
