@@ -1,6 +1,8 @@
-const mysql = require("mysql12/promise");
+//新規登録処理
+const mysql = require("mysql2/promise");
 const config = require("../config.js");
 
+/*タスクの新規登録 API*/
 postTasks = async function (body) {
   let connection = null;
   try {
@@ -18,4 +20,4 @@ postTasks = async function (body) {
   }
 };
 
-exports.postTasks = post.postTasks;
+exports.postTasks = postTasks;
