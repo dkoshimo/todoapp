@@ -115,7 +115,7 @@
                 </select>
           </form>
             <button class="display-none" >キャンセル</button>
-            <button class="display-none">保存</button>
+            <button class="display-none" id="update-task">保存</button>
         </div>
     <!--更新を押しmodalを起動(終了) -->
     
@@ -220,7 +220,7 @@
               <span>${item.task_name}</span>
               <span>${item.deadline}</span>
               <span><button id="update-button" data-id=${item.id} >更新</button></span>
-              <span><button id="delete-button" data_id=${item.id} data-delete=${item.task_name}>削除</button></span>
+              <span><button id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button></span>
             </li>`;
         });
        $("ul#task-list").append(list);
@@ -247,7 +247,39 @@
             $("#update-form input[name=status]").val(response[0].task_status);
           });
 
-          
+      //保存ボタン押下時
+        $("#update-task").on("click", async function(){
+            const id = $("#update-form input[name=id]").val();
+
+            const requestData = {
+            taskName: $("#update-form input[name=task]").val(),
+            deadline: $("#update-form input[name=deadline]").val(),
+            category: $("#update-form select[name=category]").val(),
+            status: $("#update-form select[name=status]").val(),
+            };
+
+            const response = await httpUpdate(
+              "//" + window.location.host + `/api/tasks/${id}`,
+              requestData
+            );
+
+            window.location.reload();
+          });
+
+      //削除ボタン押下時
+        $(document).on("click", "#delete-button", async function(){
+            const taskName = $(this).data("delete");
+            if (confirm(`下記の内容を削除します。\n ${taskName}`)){
+              const id = $(this).data("id");
+
+              const response = await httpDelete(
+              "//" + window.location.host + `/api/tasks/${id}`
+            );
+
+            window.location.reload();
+            }
+          });
+
     </script>
 
   </body>
