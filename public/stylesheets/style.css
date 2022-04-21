@@ -8,8 +8,6 @@ a {
 }
 
 /*ここから追加*/
-
-/**/
 input#menu1 {
   display: none;
 }
@@ -44,8 +42,9 @@ input#menu1:checked ~ label.back {
   transition: 0.5s;
   overflow-y: scroll;
 }
+
 /* 左からのスライドの場合
-.menu{
+.menu {
   width: 80%;
   max-width: 400px;
   height: 100%;
@@ -55,10 +54,11 @@ input#menu1:checked ~ label.back {
   left: 0;
   background: #f1f1f1;
   transform: translateX(-100%);
-  transition: .5s;
+  transition: 0.5s;
   overflow-y: scroll;
 }
 */
+
 input#menu1:checked ~ .menu {
   transform: translateX(0);
 }

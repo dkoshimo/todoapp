@@ -21,60 +21,17 @@
   </head>
 
   <body>
-    <div class="container">
-      <!-- Content here -->
-    </div>
-
-    <!--menuボタン-->
-    <input id="menu1" type="checkbox" />
-    <label for="menu1" class="back"></label>
-    <nav class="menu">
-      <ul>
-        <li>
-          <a href="#"
-            ><button
-              type="button"
-              class="btn btn-dark"
-              data-toggle="modal"
-              data-target="#createtaskModal"
-            >
-              タスクの追加
-            </button></a
-          >
-        </li>
-        <!---
-        <li>
-          <a href="#"
-            ><button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#update_taskModal"
-            >
-              編集
-            </button></a
-          >
-        </li>
-      -->
-        <li>
-          <a href="#"
-            ><button
-              type="button"
-              class="btn btn-danger"
-              data-toggle="modal"
-              data-target="#Modal"
-            >
-              削除
-            </button></a
-          >
-        </li>
-      </ul>
-      <label for="menu1">閉じる</label>
-    </nav>
-    <section>
-      <label for="menu1" class="menu_btn">menu</label>
-    </section>
-    <!--menuボタン（終了）-->
+    <a href="#"
+      ><button
+        type="button"
+        class="btn btn-dark"
+        style="margin-top: 10px; margin-bottom: 10px"
+        data-toggle="modal"
+        data-target="#createtaskModal"
+      >
+        +
+      </button></a
+    >
 
     <!--todo名、期限、アラートのテーブル-->
     <ul id="task-list"></ul>
@@ -126,6 +83,7 @@
                   <option value="1">勉強</option>
                   <option value="2">仕事</option>
                   <option value="3">家事</option>
+                  <option value="4">生活</option>
                 </select>
               </form>
             </div>
@@ -231,89 +189,6 @@
     </div>
     <!-- 更新を押した場合(終了) -->
 
-    <!--更新を押しmodalを起動 
-    <div class="update-form" id="update-form" style="display: none">
-      <form>
-        <input type="hidden" name="id" />
-        <label for="task">タスク</label>
-        <input type="text" name="task" id="task" />
-        <label for="Inputdate" style="margin-top: 10px; margin-bottom: 10px"
-          >期限</label
-        >
-        <input
-          type="text"
-          name="deadline"
-          id="deadline"
-          placeholder="期限を入力してください"
-        />
-        <label style="margin-top: 10px; margin-bottom: 10px">カテゴリ</label>
-        <select class="form-control" name="category" id="category">
-          <option value="1">勉強</option>
-          <option value="2">仕事</option>
-          <option value="3">家事</option>
-          <option value="4">生活</option>
-        </select>
-        <label for="status" style="margin-top: 10px; margin-bottom: 10px"
-          >ステータス</label
-        >
-        <select name="status" id="status">
-          <option value="1">進行中</option>
-          <option value="2">完了</option>
-        </select>
-      </form>
-      <button class="display-none">キャンセル</button>
-      <button class="display-none" id="update-task">保存</button>
-    </div>
-    更新を押しmodalを起動(終了) -->
-
-    <!-- 削除を押しmodalを起動
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-0">
-          <div class="alert alert-light alert-dismissible fade show mb-0" role="alert">
-            <p class="modal-title">削除する項目を選んでください </p>
-          <tbody>
-            <tr>
-                <td>1</td>
-                <td>犬の散歩</td>
-                <th>
-                  <div class="btn1_wrap">
-                    <input value="1" id="btn_demo1" type="checkbox">
-                    <label for="btn_demo1"><span></span></label>
-                  </div>             
-                </th>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>犬の餌の購入</td>
-              <th>
-                <div class="btn2_wrap">
-                  <input value="1" id="btn_demo2" type="checkbox">
-                  <label for="btn_demo2"><span></span></label>
-                </div>             
-              </th>            
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>掃除</td>
-              <th>
-                <div class="btn3_wrap">
-                  <input value="1" id="btn_demo3" type="checkbox">
-                  <label for="btn_demo3"><span></span></label>
-                </div>             
-              </th>
-            </tr>
-        
-        </tbody>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary">削除</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    削除を押しmodalを起動（終了） -->
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -355,16 +230,40 @@
         const response = await httpGet(
           "//" + window.location.host + "/api/tasks"
         );
-        //リストの繰り返し表示(アロー関数)
+        //リストの繰り返し表示(アロー関数)[menuバー、タスク名、期限、アラート]
         const list = response.map((item) => {
           return `
           <table class="table table-striped">
             <tbody>
               <tr>
+                <td>
+                  <input id="menu1" type="checkbox" />
+                  <label for="menu1" class="back"></label>
+                  <nav class="menu">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <span>
+                            <button class="btn btn-danger" id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>
+                          <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                    <label for="menu1">閉じる</label>
+                  </nav>
+                  <section>
+                    <label for="menu1" class="menu_btn"></label>
+                  </section>
+                </td>
                 <td><span>${item.task_name}</span></td>
                 <td><span>${item.deadline}</span></td>
-                <td><span><button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button></span></td>
-                <td><span><button class="btn btn-danger"   id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button></span></td>
                 <th><input type="checkbox" class="toggle" /></th>  
               </tr>
             </tbody>
@@ -380,7 +279,7 @@
         const response = await httpGet(
           "//" + window.location.host + `/api/tasks/${id}`
         );
-
+        //日付の変更
         const date = new Date(response[0].deadline);
         const year = date.getFullYear();
         const month = ("0" + (date.getMonth() + 1)).slice(-2);
