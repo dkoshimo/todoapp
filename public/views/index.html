@@ -21,6 +21,7 @@
   </head>
 
   <body>
+    <!--+ボタン-->
     <a href="#"
       ><button
         type="button"
@@ -32,6 +33,21 @@
         +
       </button></a
     >
+    <!--+ボタン終了-->
+
+    <!--編集ボタン-->
+    <a href="#"
+      ><button
+        type="button"
+        class="btn btn-dark"
+        style="margin-top: 10px; margin-bottom: 10px"
+        data-toggle="modal"
+        data-target="#updatecategoryModalLabel"
+      >
+        編集
+      </button></a
+    >
+    <!--編集ボタン-->
 
     <!--todo名、期限、アラートのテーブル-->
     <ul id="task-list"></ul>
@@ -43,13 +59,13 @@
     >
     <!--ページトップに戻る（終了）-->
 
-    <!-- タスクの追加を押した場合 -->
+    <!-- タスクの追加(+)を押した場合 -->
     <div
       class="modal fade"
       id="createtaskModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="createtasklLabel"
+      aria-labelledby="createtaskLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document" id="create-form">
@@ -232,6 +248,45 @@
         );
         //リストの繰り返し表示(アロー関数)[menuバー、タスク名、期限、アラート]
         const list = response.map((item) => {
+          //本日の年ー月ー日を変換
+          const today = new Date();
+          const today_year = today.getFullYear(); //今日の年
+          const today_month = today.getMonth() + 1; //今日の月
+          const today_day = today.getDate(); //今日の日
+
+          //deadlineの年ー月ー日を変換
+          const dead_year = Number(item.deadline.slice(0, 4)); //年
+          const dead_month = Number(item.deadline.slice(5, 7)); //月
+          const dead_day = Number(item.deadline.slice(8, 10)); //日
+
+          //今日と〆切のずれ
+          const year_until = Number(`${dead_year - today_year}`); //〆切までの年
+          const month_until = Number(`${dead_month - today_month}`); //〆切までの月
+          const day_until = Number(`${dead_day + 1 - today_day}`); //〆切までの日数
+
+          var x = 30;
+
+          //残り日数の計算
+          const until_deadline = `${
+            365 * year_until + x * month_until + day_until
+          }`;
+          //表示日が1日ずれるのを修正
+          if (dead_day < 31) {
+            dead_d = `${dead_day + 1}`;
+          } else {
+            dead_d = `${dead_day}`;
+          }
+
+          //期限までの日数を計算
+          if (until_deadline > 0 && month_until == 0) {
+            dead_until = "期限まで残り" + day_until + "日です";
+          } else if (until_deadline > 0 && month_until > 0) {
+            dead_until =
+              "期限まで残り" + month_until + "ヶ月と" + day_until + "日です";
+          } else {
+            dead_until = "期限を過ぎています";
+          }
+
           return `
           <table class="table table-striped">
             <tbody>
@@ -251,7 +306,7 @@
                       <li>
                         <a href="#">
                           <span>
-                          <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
+                            <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
                           </span>
                         </a>
                       </li>
@@ -262,9 +317,24 @@
                     <label for="menu1" class="menu_btn"></label>
                   </section>
                 </td>
-                <td><span>${item.task_name}</span></td>
-                <td><span>${item.deadline}</span></td>
-                <th><input type="checkbox" class="toggle" /></th>  
+                <td> <div class="col" style="margin-top: 10px; margin-bottom: 10px"><span>${item.task_name}</span></div></td>
+                <td> <div class="col" style="margin-top: 10px; margin-bottom: 10px"><span>${dead_year}年${dead_month}月${dead_d}日</span></div></td>
+                <td> <div class="col text-danger" style="margin-top: 10px; margin-bottom: 10px">${dead_until}</div></td>
+                <th>
+                  <a href="#">
+                    <span>
+                      <button class="btn btn-danger" id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button>
+                    </span>
+                  </a>
+                </th>
+                <th>
+                  <a href="#">
+                    <span>
+                      <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
+                    </span>
+                  </a>
+                </th>
+                <th> <div class="col" style="margin-top: 10px; margin-bottom: 10px"><input type="checkbox" class="toggle" /></div></th>  
               </tr>
             </tbody>
           </table>`;

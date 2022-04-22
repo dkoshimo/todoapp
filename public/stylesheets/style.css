@@ -94,7 +94,7 @@ input#menu1:checked ~ .menu {
 }
 /*  メニュー展開ボタン */
 .menu_btn {
-  padding: 10px 10px 10px 40px;
+  padding: 30px 10px 10px 30px;
   background: #eee;
   border-radius: 5px;
   position: relative;
