@@ -35,19 +35,19 @@
     >
     <!--+ボタン終了-->
 
-    <!--編集ボタン-->
+    <!--編集ボタン
     <a href="#"
       ><button
         type="button"
         class="btn btn-dark"
         style="margin-top: 10px; margin-bottom: 10px"
         data-toggle="modal"
-        data-target="#updatecategoryModalLabel"
+        data-target="#updatecategoryModal"
       >
         編集
       </button></a
     >
-    <!--編集ボタン-->
+    編集ボタン-->
 
     <!--todo名、期限、アラートのテーブル-->
     <ul id="task-list"></ul>
@@ -120,6 +120,62 @@
       </div>
     </div>
     <!-- タスクの追加を押した場合(終了) -->
+
+    <!--編集を押した場合 -->
+    <div
+      class="modal fade"
+      id="updatecategoryModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="updatecategoryModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document" id="create-form">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createtaskModalLabel">カテゴリ追加</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <form>
+                <label for="task">タスク</label>
+                <input type="text" class="form-control" name="task" />
+                <label style="margin-top: 10px; margin-bottom: 10px"
+                  >カテゴリ</label
+                >
+                <select class="form-control" id="category" name="category">
+                  <option value="1">勉強</option>
+                  <option value="2">仕事</option>
+                  <option value="3">家事</option>
+                  <option value="4">生活</option>
+                </select>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              キャンセル
+            </button>
+            <button type="button" class="btn btn-primary" id="create-task">
+              登録
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 編集を押した場合(終了) -->
 
     <!-- 更新を押した場合 -->
     <div
@@ -246,6 +302,7 @@
         const response = await httpGet(
           "//" + window.location.host + "/api/tasks"
         );
+
         //リストの繰り返し表示(アロー関数)[menuバー、タスク名、期限、アラート]
         const list = response.map((item) => {
           //本日の年ー月ー日を変換
@@ -288,56 +345,52 @@
           }
 
           return `
-          <table class="table table-striped">
-            <tbody>
-              <tr>
-                <td>
-                  <input id="menu1" type="checkbox" />
-                  <label for="menu1" class="back"></label>
-                  <nav class="menu">
-                    <ul>
-                      <li>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>
+                  </td>
+                  
+                  <th>
+                      <div class="hidden_box">
+                        <label for="label${item.id}"><div class="menu icon" ></div></label>
+                        <input type="checkbox" id="label${item.id}"/>
+                      <div class="hidden_show">
+                       <!--非表示ここから-->
                         <a href="#">
-                          <span>
-                            <button class="btn btn-danger" id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span>
-                            <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                    <label for="menu1">閉じる</label>
-                  </nav>
-                  <section>
-                    <label for="menu1" class="menu_btn"></label>
-                  </section>
-                </td>
-                <td> <div class="col" style="margin-top: 10px; margin-bottom: 10px"><span>${item.task_name}</span></div></td>
-                <td> <div class="col" style="margin-top: 10px; margin-bottom: 10px"><span>${dead_year}年${dead_month}月${dead_d}日</span></div></td>
-                <td> <div class="col text-danger" style="margin-top: 10px; margin-bottom: 10px">${dead_until}</div></td>
-                <th>
-                  <a href="#">
-                    <span>
-                      <button class="btn btn-danger" id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button>
-                    </span>
-                  </a>
-                </th>
-                <th>
-                  <a href="#">
-                    <span>
-                      <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
-                    </span>
-                  </a>
-                </th>
-                <th> <div class="col" style="margin-top: 10px; margin-bottom: 10px"><input type="checkbox" class="toggle" /></div></th>  
-              </tr>
-            </tbody>
-          </table>`;
+                                    <span>
+                                      <button class="btn btn-danger" id="delete-button" data-id=${item.id} data-delete=${item.task_name}>削除</button>
+                                    </span>
+                                  </a>
+
+                                  <a href="#">
+                                    <span>
+                                      <button class="btn btn-primary" type="button" id="update-button" data-id=${item.id} data-toggle="modal" data-target="#update_taskModal">更新</button>
+                                    </span>
+                                  </a>
+                        <!--ここまで-->
+                        </div>
+                      </div>
+                    </th>
+
+                    <td> <div class="col" style="margin-top: 40px; margin-bottom: 10px"><span>${item.task_name}</span></div></td>
+                     <td> <div class="col" style="margin-top: 40px; margin-bottom: 10px"><span>${dead_year}年${dead_month}月${dead_d}日</span></div></td>
+                    <td>
+
+                      <div class="hidden_box_1">
+                        <input type="checkbox" class="toggle" id="label" style="margin-top: 10px; margin-bottom: 10px"/>
+                      <div class="hidden_show">
+                       <!--非表示ここから-->
+                       <div class="col text-danger" style="margin-top: 10px; margin-bottom: 10px">${dead_until}</div>
+                       <!--ここまで-->
+                      </div>
+                      </div>
+                    </td>
+
+
+                    </tr>
+              </tbody>
+            </table>`;
         });
         $("ul#task-list").append(list);
       });
@@ -395,6 +448,8 @@
           window.location.reload();
         }
       });
+
+      //
     </script>
   </body>
 </html>

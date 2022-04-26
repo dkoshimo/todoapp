@@ -8,277 +8,6 @@ a {
 }
 
 /*ここから追加*/
-input#menu1 {
-  display: none;
-}
-/* メニュー展開時の背景 */
-.back {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.5s;
-}
-input#menu1:checked ~ label.back {
-  opacity: 1;
-  visibility: visible;
-}
-/* スライドコンテンツ */
-.menu {
-  width: 80%;
-  max-width: 400px;
-  height: 100%;
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  background: #f1f1f1;
-  transform: translateX(100%);
-  transition: 0.5s;
-  overflow-y: scroll;
-}
-
-/* 左からのスライドの場合
-.menu {
-  width: 80%;
-  max-width: 400px;
-  height: 100%;
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  background: #f1f1f1;
-  transform: translateX(-100%);
-  transition: 0.5s;
-  overflow-y: scroll;
-}
-*/
-
-input#menu1:checked ~ .menu {
-  transform: translateX(0);
-}
-/* 閉じるボタン */
-.menu label {
-  margin: 10px 0 0 10px;
-  padding: 10px 20px;
-  display: inline-block;
-  border-radius: 5px;
-  background: #333;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.5s;
-}
-.menu label:hover,
-.menu li a:hover,
-.menu_btn:hover {
-  background: #af975e;
-  color: #fff;
-}
-/* メニューリスト */
-.menu li a {
-  width: 100%;
-  padding: 20px;
-  border-bottom: 1px solid #bbb;
-  display: block;
-  text-decoration: none;
-  color: #333;
-  transition: 0.5s;
-}
-.menu li:first-of-type a {
-  border-top: 1px solid #bbb;
-}
-/*  メニュー展開ボタン */
-.menu_btn {
-  padding: 30px 10px 10px 30px;
-  background: #eee;
-  border-radius: 5px;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  transition: 0.5s;
-}
-.menu_btn::before,
-.menu_btn::after {
-  content: "";
-  width: 20px;
-  margin: auto;
-  border-top: 2px solid #666;
-  position: absolute;
-  top: 0;
-  left: 10px;
-  bottom: 0;
-  box-sizing: border-box;
-  transition: 0.5s;
-}
-.menu_btn::before {
-  height: 18px;
-  border-bottom: 2px solid #666;
-}
-.menu_btn::after {
-  height: 0;
-}
-.menu_btn:hover::before,
-.menu_btn:hover::after {
-  border-color: #fff;
-}
-
-/*デモボタン(削除の横のボタン)の追加*/
-.btn1_wrap {
-  height: 50px;
-  position: relative;
-}
-.btn1_wrap input {
-  opacity: 0;
-}
-.btn1_wrap label {
-  width: 80px;
-  height: 30px;
-  box-sizing: border-box;
-  float: left;
-  border-radius: 100px;
-  position: relative;
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-}
-.btn1_wrap input:focus + label,
-.btn1_wrap input:focus + label:before {
-  box-shadow: 0 0 4px #34abff;
-}
-.btn1_wrap input:checked + label {
-  background: #4bd865;
-}
-.btn1_wrap label:before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  background: white;
-  left: 5px;
-  top: 5px;
-  box-sizing: border-box;
-  color: black;
-  border-radius: 50px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-.btn1_wrap input[type="checkbox"]:checked + label:before {
-  left: 53px;
-}
-.btn1_wrap label span {
-  width: 100%;
-  position: absolute;
-  left: calc(100% + 15px);
-  font-size: 1.6rem;
-  line-height: 50px;
-}
-
-/*デモ２*/
-.btn2_wrap {
-  height: 50px;
-  position: relative;
-}
-.btn2_wrap input {
-  opacity: 0;
-}
-.btn2_wrap label {
-  width: 80px;
-  height: 30px;
-  box-sizing: border-box;
-  float: left;
-  border-radius: 100px;
-  position: relative;
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-}
-.btn2_wrap input:focus + label,
-.btn2_wrap input:focus + label:before {
-  box-shadow: 0 0 4px #34abff;
-}
-.btn2_wrap input:checked + label {
-  background: #4bd865;
-}
-.btn2_wrap label:before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  background: white;
-  left: 5px;
-  top: 5px;
-  box-sizing: border-box;
-  color: black;
-  border-radius: 50px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-.btn2_wrap input[type="checkbox"]:checked + label:before {
-  left: 53px;
-}
-.btn2_wrap label span {
-  width: 100%;
-  position: absolute;
-  left: calc(100% + 15px);
-  font-size: 1.6rem;
-  line-height: 50px;
-}
-
-/*デモ３*/
-.btn3_wrap {
-  height: 50px;
-  position: relative;
-}
-.btn3_wrap input {
-  opacity: 0;
-}
-.btn3_wrap label {
-  width: 80px;
-  height: 30px;
-  box-sizing: border-box;
-  float: left;
-  border-radius: 100px;
-  position: relative;
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-}
-.btn3_wrap input:focus + label,
-.btn3_wrap input:focus + label:before {
-  box-shadow: 0 0 4px #34abff;
-}
-.btn3_wrap input:checked + label {
-  background: #4bd865;
-}
-.btn3_wrap label:before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  background: white;
-  left: 5px;
-  top: 5px;
-  box-sizing: border-box;
-  color: black;
-  border-radius: 50px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-.btn3_wrap input[type="checkbox"]:checked + label:before {
-  left: 53px;
-}
-.btn3_wrap label span {
-  width: 100%;
-  position: absolute;
-  left: calc(100% + 15px);
-  font-size: 1.6rem;
-  line-height: 50px;
-}
 
 /*上に戻るボタン*/
 a.btn--circle {
@@ -302,7 +31,7 @@ a.btn--circle:hover i {
   line-height: 55px;
 }
 
-/*アラートボタン*/
+/*アラートボタン（各行の最後にある）*/
 .toggle {
   display: inline-block;
   appearance: none; /* ① */
@@ -360,3 +89,113 @@ a.btn--circle:hover i {
   content: "ON";
   left: 32px;
 }
+
+/*---------各listの頭-----------------*/
+.hidden_box {
+  margin: 2em 0; /*前後の余白*/
+  padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+  padding: 15px;
+  font-weight: bold;
+  border: solid 2px rgb(250, 245, 245);
+  cursor: pointer;
+}
+
+.hidden_box {
+  margin: 2em 0; /*前後の余白*/
+  padding: 0;
+}
+
+.hidden_box label:hover {
+  background: #efefef;
+}
+.hidden_box input {
+  display: none;
+}
+
+.hidden_box .hidden_show {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.hidden_box input:checked ~ .hidden_show {
+  padding: 10px 0;
+  height: auto;
+  opacity: 1;
+}
+
+/*---------各listの最後-----------------*/
+.hidden_box_1 {
+  margin: 2em 0; /*前後の余白*/
+  padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box_1 label {
+  padding: 15px;
+  font-weight: bold;
+  border: solid 2px black;
+  cursor: pointer;
+}
+
+.hidden_box_1 {
+  margin: 2em 0; /*前後の余白*/
+  padding: 0;
+}
+
+.hidden_box_1 label:hover {
+  background: #efefef;
+}
+
+.hidden_box_1 .hidden_show {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.hidden_box_1 input:checked ~ .hidden_show {
+  padding: 0px 0;
+  height: auto;
+  opacity: 1;
+}
+
+/*------　ハンバーガーマーク　----------*/
+.menu.icon {
+  color: #000;
+  position: absolute;
+  margin-left: -15px;
+  margin-top: 0px;
+  width: 30px;
+  height: 3px;
+  background-color: currentColor;
+}
+
+.menu.icon:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: currentColor;
+}
+
+.menu.icon:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: currentColor;
+}
+
+/*-----------------------------------*/
