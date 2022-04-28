@@ -32,7 +32,9 @@
       <a href="#" id="alldelete-button">Delete all</a>
       <a href="#" id="allchecks-button">Select all</a>
       <a href="#" id="allunchecks-button">Deselect all</a>
-      <a href="#">menu</a>
+      <a href="#" data-toggle="modal" data-target="#createcategoryModal"
+        >category</a
+      >
       <div class="animation start-home"></div>
     </nav>
 
@@ -188,6 +190,63 @@
       </div>
     </div>
     <!-- タスクの追加を押した場合(終了) -->
+
+    <!-- カテゴリの追加を押した場合 -->
+    <div
+      class="modal fade"
+      id="createcategoryModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="createcategoryLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document" id="create-form">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createtaskModalLabel">カテゴリ追加</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <form>
+                <label for="task">カテゴリ名</label>
+                <input type="text" class="form-control" name="task" />
+                <label style="margin-top: 10px; margin-bottom: 10px"
+                  >既存のカテゴリ</label
+                >
+                <select class="form-control" id="category" name="category">
+                  <option value="1">勉強</option>
+                  <option value="2">仕事</option>
+                  <option value="3">家事</option>
+                  <option value="4">生活</option>
+                  <ul id="category-list"></ul>
+                </select>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              キャンセル
+            </button>
+            <button type="button" class="btn btn-primary" id="create-category">
+              登録
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- カテゴリの追加を押した場合(終了) -->
 
     <!--編集を押した場合 ーーーーーーーーーーーーーーーーーーーーーーーー
     <div
@@ -350,7 +409,7 @@
     <script src="../javascripts/index.js"></script>
 
     <script>
-      //登録ボタンを押下時
+      //タスク追加の登録ボタンを押下時
       $("#create-task").on("click", async function () {
         const requestData = {
           taskName: $("#create-form input[name=task]").val(),
@@ -548,6 +607,26 @@
           }
         }
         window.location.reload();
+      });
+
+      //カテゴリ追加の登録ボタンを押下時
+      $("#create-category").on("click", async function () {
+        const requestData = {
+          categoryName: $("#create-form input[name=task]").val(),
+        };
+
+        const responese = await httpPost(
+          "//" + window.location.host + "/api/category",
+          requestData
+        );
+        window.location.reload();
+      });
+
+      //カテゴリ一覧取得
+      $(async function () {
+        const response = await httpGet(
+          "//" + window.location.host + "/api/category"
+        );
       });
     </script>
   </body>

@@ -33,4 +33,10 @@ router.delete("/tasks/:id", async function (req, res, next) {
   res.send(deleteTasksId);
 });
 
+/* カテゴリを登録するルーティング 
+router.post("/category", async function (req, res, next) {
+  const postCategory = await category.postCategory(req.body);
+  res.send(postCategory);
+});
+*/
 module.exports = router;
